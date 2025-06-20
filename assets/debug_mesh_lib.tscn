@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://dhqqa4xi8j42w"]
+
+[ext_resource type="Texture2D" uid="uid://drgqehch4ky54" path="res://assets/test_texture.png" id="1_4blme"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xoxvh"]
+albedo_texture = ExtResource("1_4blme")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1r2rq"]
+material = SubResource("StandardMaterial3D_xoxvh")
+size = Vector2(1, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8k77h"]
+data = PackedVector3Array(0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0, -0.5, 0.5, 0, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klx88"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_npp16"]
+_surfaces = [{
+"aabb": AABB(-0.5, -0.25, -0.5, 1, 0.5, 1),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_s30la"]
+resource_name = "diagonal debug_Plane_002"
+_surfaces = [{
+"aabb": AABB(-0.5, -0.25, -0.5, 1, 0.5, 1),
+"attribute_data": PackedByteArray(0, 0, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_klx88"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 255, 255, 38, 194, 255, 255, 255, 255, 0, 0, 38, 194, 255, 255, 255, 255, 255, 255, 38, 194, 0, 0, 0, 0, 0, 0, 38, 194, 120, 235, 12, 169, 120, 235, 12, 169, 120, 235, 12, 169, 120, 235, 12, 169)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_npp16")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4blme"]
+albedo_texture = ExtResource("1_4blme")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xoxvh"]
+data = PackedVector3Array(-0.5, -0.25, 0.5, 0.5, 0.25, -0.5, 0.5, 0.25, 0.5, -0.5, -0.25, 0.5, -0.5, -0.25, -0.5, 0.5, 0.25, -0.5)
+
+[node name="DebugMeshLib" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000316978, -0.00343549, 0.0014596)
+mesh = SubResource("PlaneMesh_1r2rq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_8k77h")
+
+[node name="Plane_002" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2075, 0, 0.0509969)
+mesh = SubResource("ArrayMesh_s30la")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_4blme")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane_002"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane_002/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_xoxvh")

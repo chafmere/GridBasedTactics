@@ -1,0 +1,28 @@
+[gd_scene load_steps=9 format=3 uid="uid://do1325ptyslhk"]
+
+[ext_resource type="Script" uid="uid://blw8b8na3vryo" path="res://scripts/world_finder.gd" id="1_v53uo"]
+[ext_resource type="Texture2D" uid="uid://dh46xlj234dyg" path="res://assets/tile_decals/Untitled.png" id="2_svvge"]
+[ext_resource type="Texture2D" uid="uid://b3hu0f04qft2i" path="res://assets/tile_decals/accessable.png" id="3_alkvp"]
+[ext_resource type="Texture2D" uid="uid://dhwhwkjanwm8p" path="res://assets/tile_decals/accessable_selected.png" id="4_67q4w"]
+[ext_resource type="Texture2D" uid="uid://e182kcq5h1id" path="res://assets/tile_decals/empty.png" id="4_epwgd"]
+[ext_resource type="Texture2D" uid="uid://bkj15fkqq3lwi" path="res://assets/tile_decals/debug.png" id="5_epwgd"]
+[ext_resource type="Texture2D" uid="uid://b6p0wus4ubk2o" path="res://assets/tile_decals/attack.png" id="7_pe12l"]
+[ext_resource type="Texture2D" uid="uid://b1v7edgab78po" path="res://assets/tile_decals/attack_selected.png" id="8_0xs6j"]
+
+[node name="WorldFinder" type="Marker3D"]
+script = ExtResource("1_v53uo")
+selected_material = ExtResource("2_svvge")
+blue_material = ExtResource("3_alkvp")
+empty_material = ExtResource("4_epwgd")
+selected_blue = ExtResource("4_67q4w")
+debug_tex = ExtResource("5_epwgd")
+attack_area = ExtResource("7_pe12l")
+attack_area_selected = ExtResource("8_0xs6j")
+
+[node name="DebugLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.168303, 0)
+billboard = 1
+text = "1,0"
+
+[node name="Decal" type="Decal" parent="."]
+size = Vector3(0.9, 0.9, 0.9)

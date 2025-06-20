@@ -1,0 +1,141 @@
+[gd_scene load_steps=6 format=3 uid="uid://brgueh3hu1qhj"]
+
+[ext_resource type="Script" uid="uid://dq1vjaomhgoh4" path="res://scripts/turn_controller.gd" id="1_cwubx"]
+[ext_resource type="Script" uid="uid://bsuyk2m4h5510" path="res://scripts/ai_controller.gd" id="2_8jtnl"]
+[ext_resource type="FontFile" uid="uid://dl6v31xfu3ux6" path="res://assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="2_k7jsr"]
+
+[sub_resource type="Gradient" id="Gradient_53pjx"]
+offsets = PackedFloat32Array(0.425414, 1)
+colors = PackedColorArray(0, 0, 0, 0.768627, 0, 0, 0, 0.121569)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g0luh"]
+gradient = SubResource("Gradient_53pjx")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[node name="TurnController" type="Node"]
+script = ExtResource("1_cwubx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerInput" type="VBoxContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.38
+offset_top = -50.5
+offset_right = -68.38
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="MoveButton" type="Button" parent="CanvasLayer/PlayerInput"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Move"
+
+[node name="AttackButton" type="Button" parent="CanvasLayer/PlayerInput"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Attack"
+
+[node name="FinishButton" type="Button" parent="CanvasLayer/PlayerInput"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Finish"
+
+[node name="Victory" type="Control" parent="CanvasLayer"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer/Victory"]
+custom_minimum_size = Vector2(0, 178.895)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -89.4475
+offset_bottom = 89.4475
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_g0luh")
+
+[node name="Label" type="Label" parent="CanvasLayer/Victory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.5
+offset_top = -73.0
+offset_right = 232.5
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_k7jsr")
+theme_override_font_sizes/font_size = 121
+text = "VICTORY"
+horizontal_alignment = 1
+
+[node name="GameOver" type="Control" parent="CanvasLayer"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer/GameOver"]
+custom_minimum_size = Vector2(0, 178.895)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -89.4475
+offset_bottom = 89.4475
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_g0luh")
+
+[node name="Label" type="Label" parent="CanvasLayer/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.5
+offset_top = -73.0
+offset_right = 232.5
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.533324, 1.09497e-06, 2.88785e-07, 1)
+theme_override_fonts/font = ExtResource("2_k7jsr")
+theme_override_font_sizes/font_size = 121
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="AiController" type="Node" parent="."]
+script = ExtResource("2_8jtnl")
+
+[connection signal="pressed" from="CanvasLayer/PlayerInput/MoveButton" to="." method="_on_move_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PlayerInput/AttackButton" to="." method="_on_attack_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PlayerInput/FinishButton" to="." method="_on_finish_button_pressed"]

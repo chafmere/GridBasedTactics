@@ -1,0 +1,7 @@
+res://level 2.tscn
+res://scripts/grid_a_star.gd
+res://objects/character.tscn
+res://objects/turn_controller.tscn
+res://objects/world_finder.tscn
+res://objects/highlight.tscn
+res://level.tscn
